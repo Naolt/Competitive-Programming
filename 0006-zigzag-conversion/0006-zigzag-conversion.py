@@ -31,8 +31,7 @@ class Solution:
                         if j < numRows-2:
                             while(j < numRows-3):
                                 text +=" "
-                                j+=1
-                            
+                                j+=1      
                         break
                 flag = False
                 strList.append((" "+text+" ")[::-1])
