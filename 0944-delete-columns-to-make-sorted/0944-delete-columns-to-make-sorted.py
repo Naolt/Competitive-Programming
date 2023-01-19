@@ -13,4 +13,9 @@ class Solution:
                     matchDict[index] = chr(123)
         
         return deleteCount
+    """
+    I could have done using column traversing
+    space = O(N)
+    time = O(N*K)
+    """
         
