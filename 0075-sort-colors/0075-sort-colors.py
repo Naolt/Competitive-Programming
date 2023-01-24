@@ -13,13 +13,22 @@ class Solution:
         """
         
         zero = 0
+        one = 0
         two = len(nums)-1
-        size = len(nums)
     
-        for i in range(size):
-            for j in range(size-1):
-                if nums[j] > nums[j+1]:
-                    nums[j],nums[j+1] = nums[j+1],nums[j]
+        while( one <= two):
+            
+            if nums[one] == 0:
+                nums[one],nums[zero] = nums[zero],nums[one]
+                one+=1 
+                zero+=1
+            elif nums[one] == 1:
+                one += 1
+            else:
+                nums[one],nums[two] = nums[two],nums[one]
+                two-=1 
+                
+                
             
             
                 
