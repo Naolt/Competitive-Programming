@@ -6,10 +6,6 @@ class Solution:
         
         piles.sort()
         size = len(piles)
-        
-        if size == 3:
-            return piles[1]
-        
         result = 0
         for i in range(size-1,size//3,-2):
             result += piles[i-1]
