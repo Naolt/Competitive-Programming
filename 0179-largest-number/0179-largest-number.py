@@ -4,16 +4,11 @@ class Solution:
         size = len(nums)
         for i in range(size):
             for j in range(size-1):
-                if nums[j][0] < nums[j+1][0]:
+                #if the last number is 0 
+                post = nums[j] + nums[j+1]
+                pre = nums[j+1] + nums[j]
+                if int(pre) > int(post):
                     nums[j],nums[j+1] = nums[j+1],nums[j]
-                elif nums[j][0] == nums[j+1][0]:
-                    
-                    #if the last number is 0 
-                    post = nums[j] + nums[j+1]
-                    pre = nums[j+1] + nums[j]
-                    
-                    if int(pre) > int(post):
-                        nums[j],nums[j+1] = nums[j+1],nums[j]
                     
                         
         if nums[0] == "0":
