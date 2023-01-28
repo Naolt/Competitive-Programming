@@ -13,4 +13,4 @@ class Solution:
             else:
                 duplicate += 1
                 
-        return size-duplicate
+        return i+1
