@@ -1,19 +1,15 @@
 class Solution:
     def maxTurbulenceSize(self, arr: List[int]) -> int:
         size = len(arr)        
+        if size == 1:
+            return 1
         result = 1
         left = 0
         flag = True
-        
-        if size == 1:
-            return 1
-        if arr[0] > arr[1]:
-            flag = True
-        else:
+        if arr[0] < arr[1]:
             flag = False
         
         for right in range(size-1):
-            print(result,left,right)
             if flag:
                 if right % 2 == 0:
                     if arr[right] < arr[right+1]:
