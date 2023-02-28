@@ -20,60 +20,32 @@ class Solution:
                         result = max(result,right-left+1)
                         left = right
                         flag = False
-                    elif arr[right] == arr[right+1]:
-                        result = max(result,right-left+1)
-                        left = right + 1
-                        if left < size-1:
-                            if arr[left] > arr[left+1]:
-                                flag = True
-                            else:
-                                flag = False 
-                    result = max(result,right-left+1)
                 else:
-                    
                     if arr[right] > arr[right+1]:
                         result = max(result,right-left+1)
                         left = right
                         flag = False
-                    elif arr[right] == arr[right+1]:
-                        result = max(result,right-left+1)
-                        left = right + 1
-                        if left < size-1:
-                            if arr[left] > arr[left+1]:
-                                flag = True
-                            else:
-                                flag = False 
-                    result = max(result,right-left+1)
+                    
             else:
                 if right % 2 == 0:
                     if arr[right] > arr[right+1]:
                         result = max(result,right-left+1)
                         left = right
-                        flag = True
-                    elif arr[right] == arr[right+1]:
-                        result = max(result,right-left+1)
-                        left = right + 1
-                        if left < size-1:
-                            if arr[left] > arr[left+1]:
-                                flag = True
-                            else:
-                                flag = False 
-                    result = max(result,right-left+1)
-                else:
-                    
+                        flag = True      
+                else:   
                     if arr[right] < arr[right+1]:
                         result = max(result,right-left+1)
                         left = right
                         flag = True
-                    elif arr[right] == arr[right+1]:
-                        result = max(result,right-left+1)
-                        left = right + 1
-                        if left < size-1:
-                            if arr[left] > arr[left+1]:
-                                flag = True
-                            else:
-                                flag = False 
-                    result = max(result,right-left+1)
+            if arr[right] == arr[right+1]:
+                result = max(result,right-left+1)
+                left = right + 1
+                if left < size-1:
+                    if arr[left] > arr[left+1]:
+                        flag = True
+                    else:
+                        flag = False 
+                result = max(result,right-left+1)
         if left < size-1:
             result = max(result,size-left)
                 
