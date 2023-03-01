@@ -6,13 +6,12 @@ class Solution:
         if n == 0:
             return 1
         answer = self.myPow(x,math.floor(abs(n)/2))
+        result = answer*answer
         if n%2 != 0:
-            result = x*answer*answer
             if n < 0:
-                return 1/result
-            return result
+                return 1/(x*result)
+            return x*result
         else:
-            result = answer*answer
             if n < 0:
                 return 1/result
             return result
