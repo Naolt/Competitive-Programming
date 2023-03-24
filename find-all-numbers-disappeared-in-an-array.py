@@ -1,8 +1,7 @@
 class Solution:
     def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
         size = len(nums)
-        i = 0
-        result = []
+        i,result = 0, []
         while i < size:
             position = nums[i]-1
             if i != position and nums[position] != nums[i]:
