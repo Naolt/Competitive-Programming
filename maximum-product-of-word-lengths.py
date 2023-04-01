@@ -1,6 +1,5 @@
 class Solution:
     def maxProduct(self, words: List[str]) -> int:
-        dic = defaultdict(int)
         nums = []
         size = len(words)
         length = 0
@@ -18,5 +17,4 @@ class Solution:
             k = 1
             k <<= (ord(char)-97)
             num |= k
-        print(bin(num))
         return num
