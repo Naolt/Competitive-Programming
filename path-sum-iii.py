@@ -6,30 +6,25 @@
 #         self.right = right
 class Solution:
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
-        queue = deque()
-        return self.getPaths(root,queue,0,targetSum)
-    
-    def getPaths(self,root,current,total,target):
-        # print(current)
-        total = sum(current)
-        if not root:
-            return 0
-        found = 0
-        current.append(root.val)
-        total += root.val
-        if total == target:
-            found += 1   
-        
-        size = len(current)
-        curTotal = total
-        for i in range(size-1):
-            curTotal -= current[i]
-            if curTotal == target:
-                found += 1
-        left = self.getPaths(root.left,current,total,target)
-        if root.left:
-            total -= current.pop()
-        right = self.getPaths(root.right,current,total,target)
-        if root.right:
-            current.pop()
-        return found + left + right
+        numDict = defaultdict(int)
+        numDict[0] = 1
+
+        def getPathSum(node,total):
+            if not node:
+                return 0
+            total += node.val 
+            result = 0
+            if total - targetSum in numDict:
+                result += numDict[total-targetSum]
+            numDict[total] += 1
+            result += getPathSum(node.left,total) 
+            result += getPathSum(node.right,total)
+            numDict[total] -= 1
+
+            if numDict[total] == 0:
+                del numDict[total]
+
+            return result 
+           
+
+        return getPathSum(root,0)
