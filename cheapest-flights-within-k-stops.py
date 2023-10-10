@@ -7,7 +7,7 @@ class Solution:
 
             while priority_queue:
                 current_distance, val, current_vertex = priority_queue.popleft()
-                if val >= k:
+                if val == k:
                     continue
 
                 for neighbor, price in graph[current_vertex]:
