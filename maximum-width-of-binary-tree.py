@@ -10,12 +10,14 @@ class Solution:
         queue = deque([(root,0)])
         size = 1
         while queue:
-            node,level = queue.popleft()
-            if node.left:
-                queue.append((node.left,level*2+1))
-            if node.right:
-                queue.append((node.right,level*2+2))
-            if queue:
-                size = max(queue[-1][1]-queue[0][1],size)
+            s = len(queue)
+            size = max(queue[-1][1]-queue[0][1]+1,size)
 
-        return size+1
+            for i in range(s):
+                node,level = queue.popleft()
+                if node.left:
+                    queue.append((node.left,level*2+1))
+                if node.right:
+                    queue.append((node.right,level*2+2))
+
+        return size
