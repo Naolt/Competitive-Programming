@@ -8,7 +8,7 @@ class Solution:
         def getRight(index):
             return (index-1) % 4
         start = [0,0]
-        for i in range(100):
+        for i in range(4):
             for char in instructions:
                 if char == "L":
                     direction = getLeft(direction)
