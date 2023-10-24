@@ -1,61 +1,44 @@
 class Solution:
     def smallestEquivalentString(self, s1: str, s2: str, baseStr: str) -> str:
-        graph = UnionSet(0)
-        length = len(s1)
-
-        for i in range(length):
-            graph.union(ord(s1[i]),ord(s2[i]))
+        unionFind = UnionFind(26)
+        lb,l1,l2 = len(baseStr),len(s1),len(s2)
+        for i in range(l1):
+            unionFind.union(s1[i],s2[i])
         
-
         result = ""
 
-        for char in baseStr:
-            result += chr(graph.find(ord(char)))
+        for i in range(len(baseStr)):
+            result += unionFind.find(baseStr[i])
 
         return result
 
 
 
 
-
-
-
-
-
-
-class UnionSet:
+class UnionFind:
     def __init__(self,size):
-        self.rep = {97+i:97+i for i in range(26)}
-        # self.size = {i:1 for i in range(size)}
+        self.parent = {chr(ord("a")+i):chr(ord("a")+i) for i in range(size)}
+        self.rank = [0]*size
+        self.count = size
 
-    def find(self,num):
-        root = num
-        while root != self.rep[root]:
-            root = self.rep[root]
+    def find(self,member):
+        root = member
+        while root != self.parent[root]:
+            root = self.parent[root]
         
-        while num != self.rep[num]:
-            parent = self.rep[num]
-            self.rep[num] = root
-            num = parent
+        while member != root:
+            parent = self.parent[member]
+            self.parent[member] = root
+            member = parent
         
         return root
-
-    def union(self,num1,num2):
-        rep1 = self.find(num1)
-        rep2 = self.find(num2)
-
-        if rep1 == rep2:
-            return
-
-        if rep1 < rep2:
-            # self.size[rep1] += self.size[rep2]
-            self.rep[rep2] = rep1
-        else:
-            # self.size[rep2] += self.size[rep1]
-            self.rep[rep1] = rep2
     
-    def onSamePath(self,num1,num2):
-        rep1 = self.find(num1)
-        rep2 = self.find(num2)
+    def union(self,member1,member2):
+        root1 = self.find(member1)
+        root2 = self.find(member2)
 
-        return rep1 == rep2
+        if root1 != root2:
+            if root1 > root2:
+                self.parent[root1] = root2
+            else:
+                self.parent[root2] = root1
