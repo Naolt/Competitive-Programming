@@ -1,17 +1,15 @@
 class Solution:
-    def myPow(self, x: float, n: int,first=False) -> float:
-
-        if n == 1:
-            return x
+    def myPow(self, x: float, n: int) -> float:
         if n == 0:
             return 1
-        answer = self.myPow(x,math.floor(abs(n)/2))
-        result = answer*answer
-        if n%2 != 0:
-            if n < 0:
-                return 1/(x*result)
-            return x*result
-        else:
-            if n < 0:
-                return 1/result
-            return result
+        if n == 1:
+            return x
+        elif n == -1:
+            return 1/x
+
+        half = self.myPow(x,n//2)
+        result = half*half
+        if n % 2:
+            result *= x
+
+        return result
