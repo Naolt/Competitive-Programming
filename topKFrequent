@@ -1,0 +1,11 @@
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        # get the frequency of all elements
+        freq =  Counter(nums)
+        # sort the Counter by frequency in decreasing order
+        freqList = list(freq.items())
+        sortedList = sorted(freqList,key=lambda x:x[1], reverse=True)
+        # Return the first k elements
+        result = map(lambda x:x[0], sortedList[:k])
+        
+        return result
