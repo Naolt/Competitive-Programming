@@ -1,24 +1,35 @@
 class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
-        left = 0
-        right = max(piles)+1
+        """
+        
+        piles = 3,6,7,11
 
-        while left+1 < right:
-            middle = math.ceil(left + (right-left)/2)
-            print(left,middle,right,self.getHours(piles,middle))
-            if self.getHours(piles,middle) <= h:
-                right = middle
+        Approach 1: Binary search
+        - choose k to be the max pile 
+        - try minimizing k using binary search
+
+        time: 10 ^ 4 log 10 ^ 9
+        space: n
+
+        """
+
+        def canEat(newK):
+            timeElapsed = 0
+
+            for pile in piles:
+                timeElapsed += ceil(pile / newK)
+
+            return timeElapsed <= h
+
+        low = 1
+        high = max(piles)
+
+        while low < high:
+            mid = low + (high - low)//2
+
+            if canEat(mid):
+                high = mid
             else:
-                left = middle
-        return left+1
+                low = mid + 1 
 
-
-    def getHours(self,piles,k):
-        hours = 0
-        for pile in piles:
-            temp = pile/k
-            if temp <= 0:
-                hours += 1
-            else:
-                hours += math.ceil(temp)
-        return hours
+        return low
