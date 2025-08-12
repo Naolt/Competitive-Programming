@@ -1,19 +1,16 @@
 class Solution:
     def sortPeople(self, names: List[str], heights: List[int]) -> List[str]:
         
-        def customSort(nums):
+        count_list = [[] for i in range(max(heights)+1)]
 
-            for i in range(1,len(nums)):
-                curr = nums[i]
+        for idx,height in enumerate(heights):
+            count_list[height].append(names[idx])
 
-                for j in range(i,0,-1):
-                    if nums[j] > nums[j-1]:
-                        nums[j],nums[j-1] = nums[j-1],nums[j]
-                    else:
-                        break
-                
-        
-        zipped_list = list(zip(heights,names))
-        customSort(zipped_list)
+        res = []
 
-        return [name for _,name in zipped_list]
+        for name_list in reversed(count_list):
+            res.extend(name_list)
+
+        return res
+
+            
