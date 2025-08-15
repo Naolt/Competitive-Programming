@@ -17,14 +17,11 @@ class Solution:
 
     def calcHourTime(self,grid,row,col):
         
-        # print("Start",row,col,grid[row][col])
         total = 0
         for i in range(row,row+3):
             for j in range(col,col+3):
-                # print(f"Element {(i,j)}",grid[i][j])
                 total += grid[i][j]
 
-        # print(f"removing {(row+1,0)} and {(row+1,col+2)}")
         total -= grid[row+1][col]
         total -= grid[row+1][col+2]
 
