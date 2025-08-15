@@ -7,15 +7,7 @@ class Solution:
 
         for i in range(row_size-2):
             for j in range(col_size-2):
-                total = 0
-                for r in range(i,i+3):
-                    for c in range(j,j+3):
-                        # print(f"Element {(i,j)}",grid[i][j])
-                        total += grid[r][c]
-
-                # print(f"removing {(row+1,0)} and {(row+1,col+2)}")
-                total -= grid[i+1][j]
-                total -= grid[i+1][j+2]
+                total = grid[i][j] + grid[i][j+1] + grid[i][j+2] + grid[i+1][j+1] + grid[i+2][j] + grid[i+2][j+1] + grid[i+2][j+2]
                 answer = max(answer,total)
 
         return answer
